@@ -144,13 +144,29 @@ function createConfettiPiece() {
 }
 
 function launchConfetti() {
+  if (!confettiContainer) return;
+
   confettiContainer.innerHTML = "";
 
-  for (let index = 0; index < 80; index += 1) {
-    window.setTimeout(() => {
+  const startTime = Date.now();
+
+  const interval = setInterval(() => {
+    const elapsed = Date.now() - startTime;
+
+    let pieces = 8;
+
+    if (elapsed > 15000) pieces = 6;
+    if (elapsed > 30000) pieces = 4;
+    if (elapsed > 45000) pieces = 2;
+
+    for (let i = 0; i < pieces; i++) {
       createConfettiPiece();
-    }, index * 20);
-  }
+    }
+
+    if (elapsed >= 60000) {
+      clearInterval(interval);
+    }
+  }, 250);
 }
 
 function showSuccess() {
