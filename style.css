@@ -1,0 +1,595 @@
+:root {
+  --cream: #fff8df;
+  --yellow: #f5c842;
+  --orange: #ef8b2c;
+  --green: #16884b;
+  --blue: #2878b8;
+  --ocean: #5fc5d8;
+  --pink: #e95e7d;
+  --brown: #79543b;
+  --dark-brown: #402d23;
+  --paper: rgba(255, 255, 255, 0.92);
+  --shadow: rgba(64, 45, 35, 0.18);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  overflow-x: hidden;
+  color: var(--dark-brown);
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+
+  background:
+    radial-gradient(
+      circle at 10% 8%,
+      rgba(245, 200, 66, 0.65),
+      transparent 27%
+    ),
+    radial-gradient(
+      circle at 85% 85%,
+      rgba(95, 197, 216, 0.46),
+      transparent 32%
+    ),
+    linear-gradient(
+      145deg,
+      #fff8df,
+      #ffe0c9 48%,
+      #d9f1e3
+    );
+}
+
+button {
+  font: inherit;
+}
+
+.page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 22px;
+  position: relative;
+  z-index: 2;
+}
+
+.card,
+.success-card {
+  width: min(700px, 100%);
+  min-height: 650px;
+  padding: 38px 32px;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  border: 3px solid rgba(255, 255, 255, 0.9);
+  border-radius: 34px;
+  background: var(--paper);
+  backdrop-filter: blur(12px);
+
+  box-shadow:
+    0 30px 80px var(--shadow),
+    inset 0 0 35px rgba(245, 200, 66, 0.15);
+}
+
+.card::before,
+.success-card::before {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  pointer-events: none;
+  border: 2px dashed rgba(239, 139, 44, 0.35);
+  border-radius: 26px;
+}
+
+.location-line {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 13px;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.travel-line {
+  width: 110px;
+  height: 2px;
+  position: relative;
+
+  background: linear-gradient(
+    90deg,
+    var(--orange),
+    var(--pink),
+    var(--green)
+  );
+}
+
+.travelling-heart {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  padding: 0 5px;
+  color: var(--pink);
+  background: white;
+  transform: translateY(-50%);
+  animation: travel 4s ease-in-out infinite;
+}
+
+.capybara {
+  width: 180px;
+  height: 165px;
+  margin: 22px auto 10px;
+  position: relative;
+}
+
+.ear {
+  width: 43px;
+  height: 46px;
+  position: absolute;
+  top: 12px;
+  z-index: 1;
+  border: 5px solid var(--dark-brown);
+  border-radius: 50%;
+  background: var(--brown);
+}
+
+.ear-left {
+  left: 15px;
+}
+
+.ear-right {
+  right: 15px;
+}
+
+.capybara-head {
+  position: absolute;
+  inset: 30px 4px 0;
+  z-index: 2;
+  border: 5px solid var(--dark-brown);
+  border-radius: 48% 48% 42% 42%;
+  background: var(--brown);
+  box-shadow: inset 0 -13px rgba(64, 45, 35, 0.13);
+  animation: capybaraFloat 3s ease-in-out infinite;
+}
+
+.eye {
+  width: 12px;
+  height: 16px;
+  position: absolute;
+  top: 43px;
+  border-radius: 50%;
+  background: var(--dark-brown);
+}
+
+.eye-left {
+  left: 41px;
+}
+
+.eye-right {
+  right: 41px;
+}
+
+.nose {
+  width: 31px;
+  height: 23px;
+  position: absolute;
+  top: 68px;
+  left: 50%;
+  border-radius: 50%;
+  background: var(--dark-brown);
+  transform: translateX(-50%);
+}
+
+.smile {
+  width: 35px;
+  height: 17px;
+  position: absolute;
+  top: 92px;
+  left: 50%;
+  border-bottom: 4px solid var(--dark-brown);
+  border-radius: 50%;
+  transform: translateX(-50%);
+}
+
+.sunflower {
+  position: absolute;
+  top: -26px;
+  right: -18px;
+  font-size: 51px;
+  transform: rotate(14deg);
+}
+
+.small-heading {
+  margin: 7px 0 12px;
+  color: var(--green);
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+}
+
+h1,
+h2 {
+  max-width: 590px;
+  margin: 0 auto;
+  font-family: Georgia, serif;
+  line-height: 1.13;
+}
+
+h1 {
+  font-size: clamp(31px, 6vw, 49px);
+}
+
+h2 {
+  font-size: clamp(38px, 7vw, 59px);
+}
+
+.intro,
+.success-message,
+.special-line,
+.portuguese-message {
+  max-width: 540px;
+  margin: 17px auto;
+  font-size: 18px;
+  line-height: 1.58;
+}
+
+.button-area {
+  width: 100%;
+  min-height: 170px;
+  margin: 15px auto 0;
+  position: relative;
+  border-radius: 24px;
+}
+
+.yes-button,
+.no-button,
+.replay-button {
+  border: 0;
+  cursor: pointer;
+  border-radius: 999px;
+  font-weight: 900;
+  box-shadow: 0 10px 23px rgba(64, 45, 35, 0.18);
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.yes-button {
+  min-width: 180px;
+  padding: 16px 24px;
+  position: absolute;
+  top: 44px;
+  left: calc(50% - 200px);
+  color: white;
+
+  background: linear-gradient(
+    135deg,
+    var(--orange),
+    var(--pink)
+  );
+}
+
+.yes-button:hover {
+  transform: translateY(-3px) scale(1.04);
+}
+
+.no-button {
+  min-width: 105px;
+  padding: 14px 20px;
+  position: absolute;
+  top: 46px;
+  left: calc(50% + 65px);
+  color: white;
+  touch-action: none;
+
+  background: linear-gradient(
+    135deg,
+    var(--green),
+    var(--blue)
+  );
+}
+
+.button-message {
+  min-height: 23px;
+  margin: 0;
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+.hidden {
+  display: none;
+}
+
+.success-card {
+  display: grid;
+  align-content: center;
+  place-items: center;
+  animation: cardEntrance 700ms ease both;
+}
+
+.success-card.hidden {
+  display: none;
+}
+
+.sunrise {
+  width: 100%;
+  height: 145px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  opacity: 0.72;
+}
+
+.sun {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: 24px;
+  left: 50%;
+  border-radius: 50%;
+  background: var(--yellow);
+  transform: translateX(-50%);
+  box-shadow: 0 0 45px rgba(245, 200, 66, 0.75);
+}
+
+.ocean {
+  height: 55px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  background:
+    radial-gradient(
+      ellipse at top,
+      rgba(255, 255, 255, 0.65),
+      transparent 55%
+    ),
+    var(--ocean);
+}
+
+.happy-capybara {
+  margin-top: 75px;
+  position: relative;
+  animation: happyBounce 1s ease-in-out infinite alternate;
+}
+
+.capybara-emoji {
+  font-size: 100px;
+}
+
+.flower-crown {
+  position: absolute;
+  top: -9px;
+  left: 50%;
+  white-space: nowrap;
+  font-size: 32px;
+  transform: translateX(-50%);
+}
+
+.special-line {
+  padding: 14px 18px;
+  border-radius: 18px;
+  background: rgba(245, 200, 66, 0.23);
+}
+
+.portuguese-message {
+  color: var(--pink);
+  font-family: Georgia, serif;
+  font-size: 20px;
+  font-style: italic;
+  font-weight: 700;
+}
+
+.final-icons {
+  margin: 13px 0 22px;
+  font-size: 28px;
+  letter-spacing: 7px;
+}
+
+.replay-button {
+  padding: 14px 22px;
+  color: white;
+  background: var(--brown);
+}
+
+.replay-button:hover {
+  transform: translateY(-2px);
+}
+
+.floating-background {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.floating-background span {
+  position: absolute;
+  opacity: 0.48;
+  font-size: clamp(28px, 5vw, 59px);
+  animation: backgroundFloat 8s ease-in-out infinite;
+}
+
+.floating-background span:nth-child(1) {
+  top: 7%;
+  left: 5%;
+}
+
+.floating-background span:nth-child(2) {
+  top: 14%;
+  right: 7%;
+  animation-delay: 1s;
+}
+
+.floating-background span:nth-child(3) {
+  bottom: 12%;
+  left: 5%;
+  animation-delay: 2s;
+}
+
+.floating-background span:nth-child(4) {
+  bottom: 8%;
+  right: 6%;
+  animation-delay: 3s;
+}
+
+.floating-background span:nth-child(5) {
+  top: 46%;
+  left: 2%;
+  animation-delay: 4s;
+}
+
+.floating-background span:nth-child(6) {
+  top: 43%;
+  right: 3%;
+  animation-delay: 5s;
+}
+
+.floating-background span:nth-child(7) {
+  bottom: 36%;
+  left: 11%;
+  animation-delay: 6s;
+}
+
+.confetti-container {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.confetti {
+  width: 12px;
+  height: 18px;
+  position: absolute;
+  top: -30px;
+  border-radius: 3px;
+  animation: confettiFall linear forwards;
+}
+
+@keyframes travel {
+  0% {
+    left: 0;
+  }
+
+  50% {
+    left: calc(100% - 22px);
+  }
+
+  100% {
+    left: 0;
+  }
+}
+
+@keyframes capybaraFloat {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-1deg);
+  }
+
+  50% {
+    transform: translateY(-8px) rotate(1deg);
+  }
+}
+
+@keyframes happyBounce {
+  from {
+    transform: translateY(0) rotate(-3deg);
+  }
+
+  to {
+    transform: translateY(-13px) rotate(3deg);
+  }
+}
+
+@keyframes cardEntrance {
+  from {
+    opacity: 0;
+    transform: scale(0.84) rotate(-2deg);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+  }
+}
+
+@keyframes backgroundFloat {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-5deg);
+  }
+
+  50% {
+    transform: translateY(-22px) rotate(8deg);
+  }
+}
+
+@keyframes confettiFall {
+  to {
+    opacity: 0;
+    transform:
+      translateY(110vh)
+      rotate(720deg);
+  }
+}
+
+@media (max-width: 620px) {
+  .page {
+    padding: 13px;
+  }
+
+  .card,
+  .success-card {
+    min-height: 690px;
+    padding: 29px 18px;
+    border-radius: 27px;
+  }
+
+  .location-line {
+    gap: 8px;
+    font-size: 11px;
+  }
+
+  .travel-line {
+    width: 62px;
+  }
+
+  .button-area {
+    min-height: 195px;
+  }
+
+  .yes-button {
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .yes-button:hover {
+    transform: translateX(-50%) translateY(-3px);
+  }
+
+  .no-button {
+    top: 102px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
