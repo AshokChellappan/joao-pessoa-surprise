@@ -1,180 +1,157 @@
-"use strict";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
 
-const questionCard = document.getElementById("questionCard");
-const successCard = document.getElementById("successCard");
-const buttonArea = document.getElementById("buttonArea");
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
 
-const yesButton = document.getElementById("yesButton");
-const noButton = document.getElementById("noButton");
-const replayButton = document.getElementById("replayButton");
+  <meta
+    name="description"
+    content="A small surprise travelling from India to João Pessoa."
+  />
 
-const buttonMessage = document.getElementById("buttonMessage");
-const confettiContainer = document.getElementById(
-  "confettiContainer"
-);
+  <title>A Question for You</title>
 
-const escapeMessages = [
-  "Não appears to be unavailable in Paraíba.",
-  "The capybara respectfully disagrees.",
-  "Nice try.",
-  "Peça ajuda à Pretinha para clicar!",
-  "This button is now hiding near Cabo Branco.",
-  "The capybara saw your finger approaching.",
-  "Como está o seu nariz agora?",   
-  "Não has temporarily left João Pessoa.",
-  "Please select the emotionally correct answer.",
-  "That option has been rejected by international law.",
-  "The button has escaped to India.",
-  "Too slow. Muito devagar.",
-  "Você está ficando mais rápido!"
-];
+  <link rel="stylesheet" href="style.css" />
+</head>
 
-let escapeCount = 0;
+<body>
+  <div class="floating-background" aria-hidden="true">
+    <span>🌻</span>
+    <span>🇮🇳</span>
+    <span>🌊</span>
+    <span>🇧🇷</span>
+    <span>☀️</span>
+    <span>💛</span>
+    <span>🌻</span>
+  </div>
 
-function randomNumber(minimum, maximum) {
-  return Math.random() * (maximum - minimum) + minimum;
-}
+  <main class="page">
+    <section class="card" id="questionCard">
+      <div class="location-line">
+        <span>Trivandrum 🇮🇳</span>
 
-function moveNoButton() {
-  const areaRectangle = buttonArea.getBoundingClientRect();
-  const buttonRectangle = noButton.getBoundingClientRect();
+        <div class="travel-line">
+          <span class="travelling-heart">♥</span>
+        </div>
 
-  const maximumX = Math.max(
-    0,
-    areaRectangle.width - buttonRectangle.width
-  );
+        <span>João Pessoa 🇧🇷</span>
+      </div>
 
-  const maximumY = Math.max(
-    0,
-    areaRectangle.height - buttonRectangle.height
-  );
+      <div class="capybara">
+        <div class="ear ear-left"></div>
+        <div class="ear ear-right"></div>
 
-  const randomX = randomNumber(0, maximumX);
-  const randomY = randomNumber(0, maximumY);
+        <div class="capybara-head">
+          <span class="eye eye-left"></span>
+          <span class="eye eye-right"></span>
+          <span class="nose"></span>
+          <span class="smile"></span>
+          <span class="sunflower">🌻</span>
+        </div>
+      </div>
 
-  noButton.style.left = `${randomX}px`;
-  noButton.style.top = `${randomY}px`;
-  noButton.style.transform = "none";
+      <p class="small-heading">
+        Official international capybara business
+      </p>
 
-  buttonMessage.textContent =
-    escapeMessages[escapeCount % escapeMessages.length];
+      <h1>
+        Do you agree to remain my favourite person in João Pessoa?
+      </h1>
 
-  escapeCount += 1;
-}
+      <p class="intro">
+        Please choose carefully. This question has travelled all the
+        way from India.
+      </p>
 
-function handlePointerMovement(event) {
-  const buttonRectangle = noButton.getBoundingClientRect();
+      <p class="button-message" id="buttonMessage">
+        The capybara believes there is only one sensible answer.
+      </p>
+      
+      <div class="button-area" id="buttonArea">
+        <button
+          type="button"
+          class="yes-button"
+          id="yesButton"
+        >
+          Sim, claro
+        </button>
 
-  const buttonCentreX =
-    buttonRectangle.left + buttonRectangle.width / 2;
+        <button
+          type="button"
+          class="no-button"
+          id="noButton"
+        >
+          Não
+        </button>
+      </div>
 
-  const buttonCentreY =
-    buttonRectangle.top + buttonRectangle.height / 2;
 
-  const horizontalDistance = event.clientX - buttonCentreX;
-  const verticalDistance = event.clientY - buttonCentreY;
+    </section>
 
-  const distance = Math.sqrt(
-    horizontalDistance ** 2 + verticalDistance ** 2
-  );
+    <section class="success-card hidden" id="successCard">
+      <div class="sunrise" aria-hidden="true">
+        <div class="sun"></div>
+        <div class="ocean"></div>
+      </div>
 
-  if (distance < 95) {
-    moveNoButton();
-  }
-}
+      <div class="happy-capybara">
+        <div class="capybara-emoji">🦫</div>
+        <div class="flower-crown">🌻 🌻 🌻</div>
+      </div>
 
-buttonArea.addEventListener(
-  "pointermove",
-  handlePointerMovement
-);
+      <p class="small-heading">
+        Resposta correta
+      </p>
 
-noButton.addEventListener("mouseenter", moveNoButton);
+      <h2>Of course you said yes.</h2>
 
-noButton.addEventListener("pointerdown", (event) => {
-  event.preventDefault();
-  moveNoButton();
-});
+      <p class="success-message">
+        You are a remarkable woman — strong, kind, smart, curious, and magically you. On the days you forget that, this little capybara is here to remind you that you are already enough. 🌻
+        <br> Um problema grande e bonita - "Você!"
+      </p>
 
-noButton.addEventListener(
-  "touchstart",
-  (event) => {
-    event.preventDefault();
-    moveNoButton();
-  },
-  { passive: false }
-);
+      <p class="special-line">
+        I hope this small capybara carried a little piece of me safely
+        across the ocean to you.
+      </p>
 
-noButton.addEventListener("focus", moveNoButton);
+      <p class="portuguese-message">
+        Gosto muito de você. Mais do que este capivara consegue explicar.
 
-noButton.addEventListener("click", (event) => {
-  event.preventDefault();
-  moveNoButton();
-});
+        <br><br>Quem diria que você viria sem dizer que vinha porque nunca é tarde
+        <br>Para apaixonar-se
+        <br><br>Chegaste
+      </p>
 
-function createConfettiPiece() {
-  const piece = document.createElement("span");
+      <div class="final-icons">
+        <span>🇮🇳</span>
+        <span>💛</span>
+        <span>🌻</span>
+        <span>💛</span>
+        <span>🇧🇷</span>
+      </div>
 
-  const colours = [
-    "#f5c842",
-    "#ef8b2c",
-    "#16884b",
-    "#2878b8",
-    "#e95e7d",
-    "#ffffff"
-  ];
+      <button
+        type="button"
+        class="replay-button"
+        id="replayButton"
+      >
+        Ask the capybara again
+      </button>
+    </section>
+  </main>
 
-  piece.className = "confetti";
+  <div
+    class="confetti-container"
+    id="confettiContainer"
+    aria-hidden="true"
+  ></div>
 
-  piece.style.left = `${Math.random() * 100}vw`;
-
-  piece.style.backgroundColor =
-    colours[Math.floor(Math.random() * colours.length)];
-
-  piece.style.animationDuration =
-    `${randomNumber(2.5, 4.5)}s`;
-
-  piece.style.animationDelay =
-    `${randomNumber(0, 0.3)}s`;
-
-  confettiContainer.appendChild(piece);
-
-  window.setTimeout(() => {
-    piece.remove();
-  }, 5000);
-}
-
-function launchConfetti() {
-  confettiContainer.innerHTML = "";
-
-  for (let index = 0; index < 80; index += 1) {
-    window.setTimeout(() => {
-      createConfettiPiece();
-    }, index * 20);
-  }
-}
-
-function showSuccess() {
-  questionCard.classList.add("hidden");
-  successCard.classList.remove("hidden");
-
-  document.title = "Sim! 🌻";
-  launchConfetti();
-}
-
-function resetQuestion() {
-  successCard.classList.add("hidden");
-  questionCard.classList.remove("hidden");
-
-  noButton.style.left = "";
-  noButton.style.top = "";
-  noButton.style.transform = "";
-
-  buttonMessage.textContent =
-    "The capybara believes there is only one sensible answer.";
-
-  escapeCount = 0;
-  document.title = "A Question for You";
-}
-
-yesButton.addEventListener("click", showSuccess);
-replayButton.addEventListener("click", resetQuestion);
+  <script src="script.js"></script>
+  
+</body>
+</html>
