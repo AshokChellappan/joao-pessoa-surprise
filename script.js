@@ -29,6 +29,14 @@ const escapeMessages = [
   "Você está ficando mais rápido!"
 ];
 
+const capybaraTrack = document.getElementById("capybaraTrack");
+const floatingCapybara = document.getElementById(
+  "floatingCapybara"
+);
+
+let capybaraMovementTimer = null;
+let capybaraPosition = 0;
+
 let escapeCount = 0;
 
 function randomNumber(minimum, maximum) {
@@ -174,10 +182,20 @@ function showSuccess() {
   successCard.classList.remove("hidden");
 
   document.title = "Sim! 🌻";
-  launchConfetti();
-}
 
+  launchConfetti();
+
+  /*
+    Wait for the answer screen to become visible
+    before measuring the movement area.
+  */
+  window.requestAnimationFrame(() => {
+    startFloatingCapybara();
+  });
+}
 function resetQuestion() {
+  stopFloatingCapybara();
+
   successCard.classList.add("hidden");
   questionCard.classList.remove("hidden");
 
@@ -190,6 +208,66 @@ function resetQuestion() {
 
   escapeCount = 0;
   document.title = "A Question for You";
+}
+
+function moveFloatingCapybara() {
+  if (!capybaraTrack || !floatingCapybara) {
+    return;
+  }
+
+  const trackWidth = capybaraTrack.clientWidth;
+  const capybaraWidth = floatingCapybara.offsetWidth;
+
+  const maximumPosition = Math.max(
+    0,
+    trackWidth - capybaraWidth
+  );
+
+  const newPosition =
+    Math.random() * maximumPosition;
+
+  const movingRight = newPosition > capybaraPosition;
+
+  floatingCapybara.style.left = `${newPosition}px`;
+
+  /*
+    Flip the capybara so it faces the direction
+    in which it is moving.
+  */
+  floatingCapybara.style.transform =
+    movingRight ? "scaleX(1)" : "scaleX(-1)";
+
+  capybaraPosition = newPosition;
+
+  /*
+    Random delay between approximately
+    1.5 and 3.2 seconds.
+  */
+  const nextDelay =
+    1500 + Math.random() * 1700;
+
+  capybaraMovementTimer = window.setTimeout(
+    moveFloatingCapybara,
+    nextDelay
+  );
+}
+
+function startFloatingCapybara() {
+  window.clearTimeout(capybaraMovementTimer);
+
+  capybaraPosition = 0;
+  floatingCapybara.style.left = "0px";
+  floatingCapybara.style.transform = "scaleX(1)";
+
+  capybaraMovementTimer = window.setTimeout(
+    moveFloatingCapybara,
+    300
+  );
+}
+
+function stopFloatingCapybara() {
+  window.clearTimeout(capybaraMovementTimer);
+  capybaraMovementTimer = null;
 }
 
 yesButton.addEventListener("click", showSuccess);
