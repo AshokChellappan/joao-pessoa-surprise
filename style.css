@@ -312,9 +312,19 @@ h2 {
 
 .success-card {
   display: grid;
-  align-content: center;
   place-items: center;
+  align-content: start;
+  padding: 175px 24px 36px;
+  position: relative;
   animation: cardEntrance 700ms ease both;
+}
+
+.success-card .small-heading {
+  margin-top: 12px;
+}
+
+.success-card h2 {
+  margin-top: 4px;
 }
 
 .success-card.hidden {
@@ -360,9 +370,83 @@ h2 {
 }
 
 .happy-capybara {
-  margin-top: 75px;
-  position: relative;
-  animation: happyBounce 1s ease-in-out infinite alternate;
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: 24px;
+  left: 50%;
+  z-index: 3;
+  margin: 0;
+  transform: translateX(-50%);
+  transform-origin: center bottom;
+  animation: happyBounce 1.2s ease-in-out infinite alternate;
+}
+
+.happy-capybara .capybara-head {
+  position: absolute;
+  inset: 18px 2px 0;
+  border-width: 3px;
+  animation: none;
+}
+
+.happy-capybara .ear {
+  width: 25px;
+  height: 28px;
+  top: 8px;
+  border-width: 3px;
+}
+
+.happy-capybara .ear-left {
+  left: 8px;
+}
+
+.happy-capybara .ear-right {
+  right: 8px;
+}
+
+.happy-capybara .eye {
+  width: 7px;
+  height: 9px;
+  top: 25px;
+}
+
+.happy-capybara .eye-left {
+  left: 23px;
+}
+
+.happy-capybara .eye-right {
+  right: 23px;
+}
+
+.happy-capybara .nose {
+  width: 18px;
+  height: 13px;
+  top: 40px;
+}
+
+.happy-capybara .smile {
+  width: 20px;
+  height: 10px;
+  top: 53px;
+  border-bottom-width: 3px;
+}
+
+.happy-capybara .sunflower {
+  display: none;
+}
+
+.happy-capybara .flower-crown {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  z-index: 5;
+  font-size: 17px;
+  white-space: nowrap;
+  transform: translateX(-50%);
+}
+
+.success-card {
+  padding-top: 175px;
 }
 
 .capybara-emoji {
@@ -512,12 +596,12 @@ h2 {
 }
 
 @keyframes happyBounce {
-  from {
-    transform: translateY(0) rotate(-3deg);
+  0% {
+    transform: translate3d(-50%, 0, 0) rotate(-2deg);
   }
 
-  to {
-    transform: translateY(-13px) rotate(3deg);
+  100% {
+    transform: translate3d(-50%, -7px, 0) rotate(2deg);
   }
 }
 
@@ -594,6 +678,10 @@ h2 {
     top: 102px;
     left: 50%;
     transform: translateX(-50%);
+  }
+
+  .success-card {
+  padding-top: 185px;
   }
 }
 
