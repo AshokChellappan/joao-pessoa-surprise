@@ -20,7 +20,7 @@ const escapeMessages = [
   "Peça ajuda à Pretinha para clicar!",
   "This button is now hiding near Cabo Branco.",
   "The capybara saw your finger approaching.",
-  "Como está o seu nariz agora?",
+  "Como está o seu nariz agora?",   
   "Não has temporarily left João Pessoa.",
   "Please select the emotionally correct answer.",
   "That option has been rejected by international law.",
@@ -123,29 +123,33 @@ function createConfettiPiece() {
     "#ffffff"
   ];
 
-  piece.classList.add("confetti");
+  piece.className = "confetti";
 
-  piece.style.left = `${Math.random() * 100}%`;
+  piece.style.left = `${Math.random() * 100}vw`;
 
-  piece.style.background =
+  piece.style.backgroundColor =
     colours[Math.floor(Math.random() * colours.length)];
 
   piece.style.animationDuration =
-    `${randomNumber(2.4, 4.8)}s`;
+    `${randomNumber(2.5, 4.5)}s`;
+
+  piece.style.animationDelay =
+    `${randomNumber(0, 0.3)}s`;
 
   confettiContainer.appendChild(piece);
 
   window.setTimeout(() => {
     piece.remove();
-  }, 5200);
+  }, 5000);
 }
 
 function launchConfetti() {
-  for (let index = 0; index < 120; index += 1) {
-    window.setTimeout(
-      createConfettiPiece,
-      index * 16
-    );
+  confettiContainer.innerHTML = "";
+
+  for (let index = 0; index < 80; index += 1) {
+    window.setTimeout(() => {
+      createConfettiPiece();
+    }, index * 20);
   }
 }
 
