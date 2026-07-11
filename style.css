@@ -599,11 +599,18 @@ h2 {
 
 @media (prefers-reduced-motion: reduce) {
   .capybara-head,
-  .happy-capybara,
   .floating-background span {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
   }
+
+.happy-capybara {
+    position: relative;
+    margin-top: 75px;
+    transform-origin: center bottom;
+    will-change: transform;
+    animation: happyBounce 1.2s ease-in-out infinite alternate;
+    }
 
   .confetti {
     animation-duration: 3s !important;
