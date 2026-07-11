@@ -100,6 +100,7 @@ button {
   width: 110px;
   height: 2px;
   position: relative;
+  overflow: visible;
 
   background: linear-gradient(
     90deg,
@@ -113,11 +114,14 @@ button {
   position: absolute;
   top: 50%;
   left: 0;
+  z-index: 2;
   padding: 0 5px;
   color: var(--pink);
   background: white;
+  will-change: transform;
+
   transform: translateY(-50%);
-  animation: travel 4s ease-in-out infinite;
+  animation: travelHeart 3.5s ease-in-out infinite;
 }
 
 .capybara {
@@ -470,23 +474,29 @@ h2 {
 .confetti {
   width: 12px;
   height: 18px;
-  position: absolute;
+  position: fixed;
   top: -30px;
+  z-index: 9999;
+  display: block;
   border-radius: 3px;
-  animation: confettiFall linear forwards;
+  pointer-events: none;
+  will-change: transform, opacity;
+  animation-name: confettiFall;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
 }
 
-@keyframes travel {
+@keyframes travelHeart {
   0% {
-    left: 0;
+    transform: translate(0, -50%) scale(1);
   }
 
   50% {
-    left: calc(100% - 22px);
+    transform: translate(88px, -50%) scale(1.2);
   }
 
   100% {
-    left: 0;
+    transform: translate(0, -50%) scale(1);
   }
 }
 
@@ -535,14 +545,16 @@ h2 {
 }
 
 @keyframes confettiFall {
-  to {
+  0% {
+    opacity: 1;
+    transform: translate3d(0, -20px, 0) rotate(0deg);
+  }
+
+  100% {
     opacity: 0;
-    transform:
-      translateY(110vh)
-      rotate(720deg);
+    transform: translate3d(0, 110vh, 0) rotate(720deg);
   }
 }
-
 @media (max-width: 620px) {
   .page {
     padding: 13px;
@@ -586,10 +598,41 @@ h2 {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  .capybara-head,
+  .happy-capybara,
+  .floating-background span {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
   }
+
+  .confetti {
+    animation-duration: 3s !important;
+    animation-iteration-count: 1 !important;
+  }
 }
+    
+@media (max-width: 620px) {
+  .travel-line {
+    width: 62px;
+  }
+
+  .travelling-heart {
+    animation-name: travelHeartMobile;
+    animation-duration: 3s;
+  }
+}
+
+@keyframes travelHeartMobile {
+  0% {
+    transform: translate(0, -50%) scale(1);
+  }
+
+  50% {
+    transform: translate(40px, -50%) scale(1.2);
+  }
+
+  100% {
+    transform: translate(0, -50%) scale(1);
+  }
+}
+  
